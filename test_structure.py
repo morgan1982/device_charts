@@ -120,7 +120,7 @@ class Main(QtGui.QMainWindow):
 
         width = 0.35
 
-
+        # self.ax1.bar(devices, dev_counter, width, alpha= 0.5, align='center')
         self.ax1.bar(devices, dev_counter, width,  color=col_pal, alpha= 0.5, align ='center' ) # the plot data
         # self.ax1.bar(dates + 0.2, count_dev, width,  color='grey', alpha= 0.5 ) # the plot data
 
