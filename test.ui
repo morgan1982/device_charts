@@ -192,18 +192,18 @@
    <widget class="QWidget" name="plt_widget" native="true">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>200</x>
       <y>40</y>
-      <width>451</width>
-      <height>351</height>
+      <width>651</width>
+      <height>491</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="dist_btn">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>400</y>
+      <x>30</x>
+      <y>290</y>
       <width>75</width>
       <height>23</height>
      </rect>

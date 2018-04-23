@@ -29,15 +29,22 @@ class Main(QtGui.QMainWindow):
         self.setWindowTitle('ipad database')
 
         # q_widget for plot
-        self.figure1 = plt.figure()
-        self.canvas1 = FigureCanvas(self.figure1)
+
         # self.toolbar1 = NavigationToolbar(self.canvas1, self)
 
-        layout1 = QtGui.QVBoxLayout()
-        # layout1.addWidget(self.toolbar1)
-        layout1.addWidget(self.canvas1)
+        grid = QtGui.QGridLayout()
+        self.ui.plt_widget.setLayout(grid)
 
-        self.ui.plt_widget.setLayout(layout1)
+        self.figure1 = plt.figure(figsize=(15,5))
+        self.canvas1 = FigureCanvas(self.figure1)
+
+        grid.addWidget(self.canvas1, 1,0,1,2)
+
+        # layout1 = QtGui.QVBoxLayout()
+        # layout1.addWidget(self.toolbar1)
+        # layout1.addWidget(self.canvas1)
+
+        # self.ui.plt_widget.setLayout(layout1)
         self.num_rep_init()  
 
 
@@ -69,8 +76,41 @@ class Main(QtGui.QMainWindow):
 
 
         device_list = ["ipad 2", "ipad 3", "ipad 4", "ipad air", "ipad mini"]
+
+
         devices_count = self.device_selector(device_list)
-        print(devices_count)
+        # print(devices_count)
+
+        dev_list = [
+            ["ipad 2", devices_count[0], 'coral'],
+            ["ipad 3", devices_count[1], 'blue'],
+            ["ipad 4", devices_count[2], 'lightblue'],
+            ["ipad air", devices_count[3], 'orange'],
+            ["ipad mini", devices_count[4], 'tomato']
+            
+        ]
+
+        new_list = sorted(dev_list, key=lambda k: k[1], reverse=True)
+        print("new list: ", new_list)
+        # dev_list.sort(key=lambda k: (k[1]), reverse=True)
+        # print("shorted values ", dev_list)
+
+        # new_val = [[i[0], i[1], i[2]] for i in dev_list.sort(key=lambda k: (k[1]), reverse=True)]
+        # print("new val", new_val)        
+        devices = [i[0] for i in new_list]
+        print("devices", devices)
+        col_pal = [i[2] for i in new_list]
+        dev_counter = [i[1] for i in new_list]
+        print("dev_counter", dev_counter)
+
+        # dev_list = {
+        #     "ipad 2": [device_count[0], 'coral'],
+        #     "ipad 3": [device_count[1], 'blue'],
+        #     "ipad 4": [device_count[2], 'lightblue'],
+        #     "ipad air": [device_count[3], 'orange'],
+        #     "ipad mini": [device_count[4], 'tomato']
+        # }
+
 
 
         # setup graph 
@@ -80,7 +120,8 @@ class Main(QtGui.QMainWindow):
 
         width = 0.35
 
-        self.ax1.bar(device_list, devices_count, width,  color='orange', alpha= 0.5, align ='center' ) # the plot data
+
+        self.ax1.bar(devices, dev_counter, width,  color=col_pal, alpha= 0.5, align ='center' ) # the plot data
         # self.ax1.bar(dates + 0.2, count_dev, width,  color='grey', alpha= 0.5 ) # the plot data
 
         self.ax1.set_axisbelow(True)
